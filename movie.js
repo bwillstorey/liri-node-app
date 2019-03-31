@@ -1,26 +1,13 @@
 
 // movie-this
 
-var movieThis = function(movieName) {
+var axios = require("axios");
 
-    var movieArgs = process.argv;
+function movie (movieName) {
 
     if(movieName === undefined) {
 		movieName = "mr nobody";
 	}
-    
-    // var movieName = "";
-
-    for (var i = 2; i < movieArgs.length; i++) {
-
-        if (i > 2 && i < movieArgs.length) {
-        movieName = movieName + "+" + movieArgs[i];
-        }
-        else {
-        movieName += movieArgs[i];
-    
-        }
-    }
 
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
@@ -32,11 +19,14 @@ var movieThis = function(movieName) {
         console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
         console.log("Country: " + response.data.Country);
         console.log("Language: " + response.data.Language);
+        console.log("Plot: " + response.data.Plot);
         console.log("Actors: " + response.data.Actors);
     })
 
     .catch(function(error) {
-
+        console.log(error);
     });
 
-};
+}
+
+module.exports = movie;
