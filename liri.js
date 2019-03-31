@@ -1,8 +1,8 @@
 
-var concerts = require("concert.js");
-var spotify = require("spotify.js");
-var movies = require("movie.js");
-var doWhatItSays = require("do-what-it-says.js");
+var concerts = require("./concert");
+// var spotify = require("spotify.js");
+// var movies = require("movie.js");
+// var doWhatItSays = require("do-what-it-says.js");
 
 var parameters = process.argv;
 
@@ -22,7 +22,7 @@ function search (command, input) {
     } else {
         console.log("Error. Please try again.");
     }
-    
+
 }
 
 search(parameters[2], parameters.slice(3).join("+"));

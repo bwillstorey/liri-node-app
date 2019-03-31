@@ -4,25 +4,21 @@
 var axios = require("axios");
 var moment = require("moment");
 
-function concertThis (artist) {
+function concert (artist) {
 
 var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
 axios.get(queryUrl)
 .then(function(response) {
-        console.log(response.data);
 
+    response.data.forEach(function(concert) {
+        console.log("Venue Name: " + concert.venue.name);
+        console.log("Venue Location: " + concert.venue.city + ", " + concert.venue.region + ", " + concert.venue.country);
+    
+        var convertedDate = moment(concert.datetime).format("MM/DD/YYYY");
 
-        console.log("Venue Name: " + response.data[0].venue.name);
-        console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.region + ", " + response.data[0].venue.country);
-        
-        var rawDate = response.data[0].datetime;
-        JSON.stringify(rawDate);
-        var dateFormat = "YYYY-MM-DDTHH:mm:ssZ";
-        var convertedDate = moment(rawDate, dateFormat);
-        var formattedDate = convertedDate.format("MM/DD/YYYY");
-
-        console.log("Event Date: " + formattedDate);
+        console.log("Event Date: " + convertedDate);
+    });
 })
 
 .catch(function(error) {
