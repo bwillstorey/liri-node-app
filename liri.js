@@ -2,7 +2,7 @@
 var concerts = require("./concert");
 var spotify = require("./spotify");
 var movies = require("./movie");
-// var doWhatItSays = require("do-what-it-says.js");
+var doWhatItSays = require("./do-what-it-says");
 
 var parameters = process.argv;
 

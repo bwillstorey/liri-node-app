@@ -18,7 +18,6 @@ function spotify (song) {
         query: song,
     })
     .then(function(response) {
-        // console.log(response.tracks.items[0]);
 
         for (var i = 0; i < 3; i++) {
             var resp = response.tracks.items[i];
@@ -26,7 +25,13 @@ function spotify (song) {
             console.log("\n------------------------");
             console.log("Artist: " + resp.album.artists[0].name);
             console.log("Song Name: " + resp.name);
-            console.log("Preview: " + resp.preview_url);
+
+            if (resp.preview_url === null) {
+                console.log("Preview: " + resp.external_urls.spotify);
+            } else {
+                console.log("Preview: " + resp.preview_url);
+            }
+
             console.log("Album: " + resp.album.name);
         }
     })

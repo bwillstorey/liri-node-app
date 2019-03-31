@@ -2,28 +2,15 @@
 // do-what-it-says
 
 var fs = require("fs");
-require("dotenv").config();
 
-fs.readFile("random.txt", "utf-8", function(error, data) {
-    var command;
-    var query;
+function doWhatItSays(func) {
 
-    if(data.indexOf(",") !== -1) {
+    fs.readFile("random.txt", "utf-8", function(error, data) {
+
         var dataArr = data.split(",");
-        command = dataArr[0];
-        query = dataArr[1];
-    } else {
-        command = data;
-    }
-
+        func(dataArr[0], dataArr[1]);
     
-    if(command === "concert-this") {
-        concertThis(query);
-    } else if(command === "spotify-this-song") {
-        spotifyThisSong(query);
-    } else if(command === "movie-this") {
-        movieThis(query);
-    } else { 
-        console.log("Command from file is not a valid command! Please try again.");
-    }
-});
+    });
+}
+
+module.exports = doWhatItSays;
