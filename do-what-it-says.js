@@ -9,6 +9,7 @@ function doWhatItSays(func) {
 
         var dataArr = data.split(",");
         func(dataArr[0], dataArr[1]);
+        console.log(dataArr[0], dataArr [1]);
     
     });
 }

@@ -22,7 +22,6 @@ function search (command, input) {
     } else {
         console.log("Error. Please try again.");
     }
-
 }
 
 search(parameters[2], parameters.slice(3).join("+"));

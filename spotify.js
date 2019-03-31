@@ -10,7 +10,7 @@
 function spotify (song) {
     
     if (song === "") {
-        return spotify("the sign");
+        return spotify("ace of base the sign");
     }
 
     runSpotify.search({

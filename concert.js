@@ -6,24 +6,26 @@ var moment = require("moment");
 
 function concert (artist) {
 
-var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+    var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
-axios.get(queryUrl)
-.then(function(response) {
+    axios.get(queryUrl)
+    .then(function(response) {
 
-    response.data.forEach(function(concert) {
-        console.log("Venue Name: " + concert.venue.name);
-        console.log("Venue Location: " + concert.venue.city + ", " + concert.venue.region + ", " + concert.venue.country);
-    
-        var convertedDate = moment(concert.datetime).format("MM/DD/YYYY");
+        for (var i = 0; i < 3; i++) {
+            console.log("\n------------------------");
+            console.log(response.data[i].venue.name);
+            console.log("Venue Name: " + response.data[i].venue.name);
+            console.log("Venue Location: " + response.data[i].venue.city + ", " + response.data[i].venue.region + ", " + response.data[i].venue.country);
+        
+            var convertedDate = moment(response.data[i].datetime).format("MM/DD/YYYY");
 
-        console.log("Event Date: " + convertedDate);
+            console.log("Event Date: " + convertedDate);
+        }
+    })
+
+    .catch(function(error) {
+        console.log(error);
     });
-})
-
-.catch(function(error) {
-    console.log(error);
-});
 }
 
 module.exports = concert;
