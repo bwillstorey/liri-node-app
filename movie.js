@@ -5,14 +5,15 @@ var axios = require("axios");
 
 function movie (movieName) {
 
-    if(movieName === undefined) {
-		movieName = "mr nobody";
-	}
+    if (movieName === "") {
+        return movie("mr nobody");
+    }
 
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
     axios.get(queryUrl)
     .then(function(response) {
+        
         console.log("Title: " + response.data.Title);
         console.log("Year Released: " + response.data.Year);
         console.log("IMDB Rating: " + response.data.imdbRating);
@@ -21,6 +22,7 @@ function movie (movieName) {
         console.log("Language: " + response.data.Language);
         console.log("Plot: " + response.data.Plot);
         console.log("Actors: " + response.data.Actors);
+
     })
 
     .catch(function(error) {
